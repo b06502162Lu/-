@@ -48,7 +48,7 @@ def load_testing_data(path=str(sys.argv[1])+'/testing_data.txt'):
 #xtest=load_testing_data()
 #print(xtest[:10])
 #input('stop')
-"""
+
 def evaluation(outputs, labels):
     # outputs => probability (float)
     # labels => labels
@@ -56,7 +56,7 @@ def evaluation(outputs, labels):
     outputs[outputs<0.5] = 0 # 小於 0.5 為無惡意
     correct = torch.sum(torch.eq(outputs, labels)).item()
     return correct
-"""
+
 
 
 # w2v.py
@@ -79,15 +79,16 @@ train_x_no_label = load_training_data(str(sys.argv[2]))
 
 #print("loading testing data ...")
 #test_x = load_testing_data('testing_data.txt')
-
+"""
 #model = train_word2vec(train_x + train_x_no_label + test_x)
 model = train_word2vec(train_x + train_x_no_label )
 #model = train_word2vec(train_x )
-    
+   
 print("saving model ...")
 # model.save(os.path.join(path_prefix, 'model/w2v_all.model'))
 model.save(os.path.join(path_prefix, 'w2v_all.model'))
 
+"""
 
 
 # preprocess.py

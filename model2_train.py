@@ -48,7 +48,7 @@ def load_testing_data(path=str(sys.argv[1])+'/testing_data.txt'):
 #xtest=load_testing_data()
 #print(xtest[:10])
 #input('stop')
-"""
+
 def evaluation(outputs, labels):
     # outputs => probability (float)
     # labels => labels
@@ -56,7 +56,7 @@ def evaluation(outputs, labels):
     outputs[outputs<0.5] = 0 # 小於 0.5 為無惡意
     correct = torch.sum(torch.eq(outputs, labels)).item()
     return correct
-"""
+
 
 
 # w2v.py

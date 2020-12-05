@@ -70,7 +70,7 @@ from gensim.models import word2vec
 
 def train_word2vec(x):
     # 訓練 word to vector 的 word embedding
-    model = word2vec.Word2Vec(x, size=300, window=5, min_count=5, workers=12, iter=15, sg=1)
+    model = word2vec.Word2Vec(x, size=300, window=5, min_count=5, workers=12, iter=10, sg=1)
     return model
 
 print("loading training data ...")
@@ -79,15 +79,16 @@ train_x_no_label = load_training_data(str(sys.argv[2]))
 
 #print("loading testing data ...")
 #test_x = load_testing_data('testing_data.txt')
-
+"""
 #model = train_word2vec(train_x + train_x_no_label + test_x)
 model = train_word2vec(train_x + train_x_no_label )
 #model = train_word2vec(train_x )
-    
+   
 print("saving model ...")
 # model.save(os.path.join(path_prefix, 'model/w2v_all.model'))
 model.save(os.path.join(path_prefix, 'w2v_all.model'))
 
+"""
 
 
 # preprocess.py
@@ -282,7 +283,7 @@ def training(batch_size, n_epoch, lr, model_dir, train, valid, model, device):
                 # 如果 validation 的結果優於之前所有的結果，就把當下的模型存下來以備之後做預測時使用
                 best_acc = total_acc
                 #torch.save(model, "{}/val_acc_{:.3f}.model".format(model_dir,total_acc/v_batch*100))
-                torch.save(model, "{}/ckpt_1.model".format(model_dir))
+                torch.save(model, "{}/ckpt_6.model".format(model_dir))
                 print('saving model with acc {:.3f}'.format(total_acc/v_batch*100))
         print('-----------------------------------------------')
         model.train() # 將 model 的模式設為 train，這樣 optimizer 就可以更新 model 的參數（因為剛剛轉成 eval 模式）
@@ -334,7 +335,7 @@ w2v_path = os.path.join(path_prefix, 'w2v_all.model') # 處理 word to vec model
 sen_len = 15
 fix_embedding = True # fix embedding during training
 batch_size = 128
-epoch = 20
+epoch = 15
 lr = 0.001
 # model_dir = os.path.join(path_prefix, 'model/') # model directory for checkpoint model
 model_dir = path_prefix # model directory for checkpoint model

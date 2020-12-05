@@ -79,16 +79,15 @@ train_x_no_label = load_training_data(str(sys.argv[2]))
 
 #print("loading testing data ...")
 #test_x = load_testing_data('testing_data.txt')
-"""
+
 #model = train_word2vec(train_x + train_x_no_label + test_x)
 model = train_word2vec(train_x + train_x_no_label )
 #model = train_word2vec(train_x )
-   
+    
 print("saving model ...")
 # model.save(os.path.join(path_prefix, 'model/w2v_all.model'))
 model.save(os.path.join(path_prefix, 'w2v_all.model'))
 
-"""
 
 
 # preprocess.py

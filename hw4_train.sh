@@ -1,3 +1,3 @@
 #!/bin/bash
-python3 model1_train.py $1 $2
+python3 model2_train.py $1 $2
 

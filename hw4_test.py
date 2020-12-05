@@ -266,11 +266,11 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
                                             shuffle = False,
                                             num_workers = 8)
 print('\nload model ...')
-model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
-outputs_1 = testing(batch_size, test_loader, model_1, device)
+model_2 = torch.load(os.path.join(model_dir, 'ckpt_2.model'))
+outputs_2 = testing(batch_size, test_loader, model_2, device)
 
 # 寫到 csv 檔案供上傳 Kaggle
-tmp = pd.DataFrame({"id":[str(i) for i in range(len(test_x))],"label":outputs_1})
+tmp = pd.DataFrame({"id":[str(i) for i in range(len(test_x))],"label":outputs_2})
 print("save csv ...")
 tmp.to_csv(sys.argv[2], index=False)
 print("Finish Predicting")

@@ -243,8 +243,8 @@ w2v_path = os.path.join(path_prefix, 'w2v_all.model') # 處理 word to vec model
 sen_len = 15
 fix_embedding = True # fix embedding during training
 batch_size = 128
-epoch = 20
-lr = 0.001
+#epoch = 20
+#lr = 0.001
 # model_dir = os.path.join(path_prefix, 'model/') # model directory for checkpoint model
 model_dir = path_prefix # model directory for checkpoint model
 
@@ -266,11 +266,58 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
                                             shuffle = False,
                                             num_workers = 8)
 print('\nload model ...')
+
+
+model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
+outputs_1 = testing(batch_size, test_loader, model_1, device)
+
+
 model_2 = torch.load(os.path.join(model_dir, 'ckpt_2.model'))
 outputs_2 = testing(batch_size, test_loader, model_2, device)
 
+
+model_3 = torch.load(os.path.join(model_dir, 'ckpt_3.model'))
+outputs_3 = testing(batch_size, test_loader, model_3, device)
+
+
+model_4 = torch.load(os.path.join(model_dir, 'ckpt_4.model'))
+outputs_4 = testing(batch_size, test_loader, model_4, device)
+
+
+model_5 = torch.load(os.path.join(model_dir, 'ckpt_5.model'))
+outputs_5 = testing(batch_size, test_loader, model_5, device)
+
+
+model_6 = torch.load(os.path.join(model_dir, 'ckpt_6.model'))
+outputs_6 = testing(batch_size, test_loader, model_6, device)
+
+
+model_7 = torch.load(os.path.join(model_dir, 'ckpt_7.model'))
+outputs_7 = testing(batch_size, test_loader, model_7, device)
+
+model_8 = torch.load(os.path.join(model_dir, 'ckpt_8.model'))
+outputs_8 = testing(batch_size, test_loader, model_8, device)
+
+model_9 = torch.load(os.path.join(model_dir, 'ckpt_9.model'))
+outputs_9 = testing(batch_size, test_loader, model_9, device)
+
+model_10 = torch.load(os.path.join(model_dir, 'ckpt_10.model'))
+outputs_10 = testing(batch_size, test_loader, model_10, device)
+
+final = list()
+
+for i in range(len(outputs_1)):
+    tem = outputs_1[i]+outputs_2[i]+outputs_3[i]+outputs_4[i]+outputs_5[i]+outputs_6[i]+outputs_7[i]+outputs_8[i]+outputs_9[i]+outputs_10[i]
+    tem = tem/10 
+    if(tem>0.5):
+        final.append(1)
+    else:
+        final.append(0)
+
+
+
 # 寫到 csv 檔案供上傳 Kaggle
-tmp = pd.DataFrame({"id":[str(i) for i in range(len(test_x))],"label":outputs_2})
+tmp = pd.DataFrame({"id":[str(i) for i in range(len(test_x))],"label":final})
 print("save csv ...")
 tmp.to_csv(sys.argv[2], index=False)
 print("Finish Predicting")

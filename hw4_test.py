@@ -245,6 +245,10 @@ batch_size = 128
 # model_dir = os.path.join(path_prefix, 'model/') # model directory for checkpoint model
 model_dir = path_prefix # model directory for checkpoint model
 
+# 製作一個 model 的對象
+model = LSTM_Net(embedding, embedding_dim=400, hidden_dim=5, num_layers=1, dropout=0.5, fix_embedding=fix_embedding)
+model = model.to(device) # device為 "cuda"，model 使用 GPU 來訓練（餵進去的 inputs 也需要是 cuda tensor）
+
 
 # 開始測試模型並做預測
 print("loading testing data ...")
@@ -264,7 +268,7 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
                                             num_workers = 8)
 print('\nload model ...')
 
-torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#torch.device("cuda" if torch.cuda.is_available() else "cpu")
  
 
 model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))

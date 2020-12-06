@@ -326,4 +326,3 @@ print("Finish Predicting")
 # 需要先 pip install kaggle、Create API Token，詳細請看 https://github.com/Kaggle/kaggle-api 以及 https://www.kaggle.com/code1110/how-to-submit-from-google-colab
 # kaggle competitions submit [competition-name] -f [csv file path]] -m [message]
 # e.g., kaggle competitions submit ml-2020spring-hw4 -f output/predict.csv -m "......"
-

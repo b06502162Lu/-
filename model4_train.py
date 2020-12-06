@@ -58,7 +58,7 @@ def evaluation(outputs, labels):
     return correct
 
 
-
+"""
 # w2v.py
 # 這個 block 是用來訓練 word to vector 的 word embedding
 # 注意！這個 block 在訓練 word to vector 時是用 cpu，可能要花到 10 分鐘以上
@@ -70,7 +70,7 @@ from gensim.models import word2vec
 
 def train_word2vec(x):
     # 訓練 word to vector 的 word embedding
-    model = word2vec.Word2Vec(x, size=300, window=5, min_count=5, workers=12, iter=10, sg=1)
+    model = word2vec.Word2Vec(x, size=400, window=5, min_count=5, workers=12, iter=15, sg=1)
     return model
 
 print("loading training data ...")
@@ -79,17 +79,16 @@ train_x_no_label = load_training_data(str(sys.argv[2]))
 
 #print("loading testing data ...")
 #test_x = load_testing_data('testing_data.txt')
-"""
+
 #model = train_word2vec(train_x + train_x_no_label + test_x)
 model = train_word2vec(train_x + train_x_no_label )
 #model = train_word2vec(train_x )
-   
+    
 print("saving model ...")
 # model.save(os.path.join(path_prefix, 'model/w2v_all.model'))
 model.save(os.path.join(path_prefix, 'w2v_all.model'))
 
 """
-
 
 # preprocess.py
 # 這個 block 用來做 data 的預處理
@@ -97,7 +96,7 @@ from torch import nn
 from gensim.models import Word2Vec
 
 class Preprocess():
-    def __init__(self, sentences, sen_len, w2v_path="./w2v.model"):
+    def __init__(self, sentences, sen_len, w2v_path="./w2v_all.model"):
         self.w2v_path = w2v_path
         self.sentences = sentences
         self.sen_len = sen_len
@@ -202,7 +201,7 @@ class TwitterDataset(data.Dataset):
 import torch
 from torch import nn
 class LSTM_Net(nn.Module):
-    def __init__(self, embedding, embedding_dim, hidden_dim, num_layers, dropout=0.5, fix_embedding=True):
+    def __init__(self, embedding, embedding_dim, hidden_dim=5, num_layers=1, dropout=0.2, fix_embedding=True):
         super(LSTM_Net, self).__init__()
         # 製作 embedding layer
         self.embedding = torch.nn.Embedding(embedding.size(0),embedding.size(1))
@@ -358,11 +357,11 @@ train_x_no_label = preprocess.sentence_word2idx()
 
 
 # 製作一個 model 的對象
-model = LSTM_Net(embedding, embedding_dim=300, hidden_dim=5, num_layers=1, dropout=0.5, fix_embedding=fix_embedding)
+model = LSTM_Net(embedding, embedding_dim=400, hidden_dim=5, num_layers=1, dropout=0.5, fix_embedding=fix_embedding)
 model = model.to(device) # device為 "cuda"，model 使用 GPU 來訓練（餵進去的 inputs 也需要是 cuda tensor）
 
 # 把 data 分為 training data 跟 validation data（將一部份 training data 拿去當作 validation data）
-X_train, X_val, y_train, y_val = train_x[:100000], train_x[100000:], y[:100000], y[100000:]
+X_train, X_val, y_train, y_val = train_x[:130000], train_x[130000:], y[:130000], y[130000:]
 print(X_train[:10])
 print(y_train[:10])
 #input('stop')

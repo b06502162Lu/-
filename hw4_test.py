@@ -267,44 +267,44 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
                                             num_workers = 8)
 print('\nload model ...')
 
-torch.device("cuda" if torch.cuda.is_available() else "cpu")
-inputs.to(device) 
+#torch.device("cuda" if torch.cuda.is_available() else "cpu")
+ 
 
-model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
-outputs_1 = testing(batch_size, test_loader, model_1, device)
-
-
-model_2 = torch.load(os.path.join(model_dir, 'ckpt_2.model'))
-outputs_2 = testing(batch_size, test_loader, model_2, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
+outputs_1 = testing(batch_size, test_loader, model, device)
 
 
-model_3 = torch.load(os.path.join(model_dir, 'ckpt_3.model'))
-outputs_3 = testing(batch_size, test_loader, model_3, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_2.model'))
+outputs_2 = testing(batch_size, test_loader, model, device)
 
 
-model_4 = torch.load(os.path.join(model_dir, 'ckpt_4.model'))
-outputs_4 = testing(batch_size, test_loader, model_4, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_3.model'))
+outputs_3 = testing(batch_size, test_loader, model, device)
 
 
-model_5 = torch.load(os.path.join(model_dir, 'ckpt_5.model'))
-outputs_5 = testing(batch_size, test_loader, model_5, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_4.model'))
+outputs_4 = testing(batch_size, test_loader, model, device)
 
 
-model_6 = torch.load(os.path.join(model_dir, 'ckpt_6.model'))
-outputs_6 = testing(batch_size, test_loader, model_6, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_5.model'))
+outputs_5 = testing(batch_size, test_loader, model, device)
 
 
-model_7 = torch.load(os.path.join(model_dir, 'ckpt_7.model'))
-outputs_7 = testing(batch_size, test_loader, model_7, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_6.model'))
+outputs_6 = testing(batch_size, test_loader, model, device)
 
-model_8 = torch.load(os.path.join(model_dir, 'ckpt_8.model'))
-outputs_8 = testing(batch_size, test_loader, model_8, device)
 
-model_9 = torch.load(os.path.join(model_dir, 'ckpt_9.model'))
-outputs_9 = testing(batch_size, test_loader, model_9, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_7.model'))
+outputs_7 = testing(batch_size, test_loader, model, device)
 
-model_10 = torch.load(os.path.join(model_dir, 'ckpt_10.model'))
-outputs_10 = testing(batch_size, test_loader, model_10, device)
+model = torch.load(os.path.join(model_dir, 'ckpt_8.model'))
+outputs_8 = testing(batch_size, test_loader, model, device)
+
+model = torch.load(os.path.join(model_dir, 'ckpt_9.model'))
+outputs_9 = testing(batch_size, test_loader, model, device)
+
+model = torch.load(os.path.join(model_dir, 'ckpt_10.model'))
+outputs_10 = testing(batch_size, test_loader, model, device)
 
 final = list()
 

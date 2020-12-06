@@ -240,14 +240,11 @@ w2v_path = os.path.join(path_prefix, 'w2v_all.model') # 處理 word to vec model
 sen_len = 15
 fix_embedding = True # fix embedding during training
 batch_size = 128
-#epoch = 20
-#lr = 0.001
+epoch = 20
+lr = 0.001
 # model_dir = os.path.join(path_prefix, 'model/') # model directory for checkpoint model
 model_dir = path_prefix # model directory for checkpoint model
 
-# 製作一個 model 的對象
-model = LSTM_Net(embedding, embedding_dim=400, hidden_dim=5, num_layers=1, dropout=0.5, fix_embedding=fix_embedding)
-model = model.to(device) # device為 "cuda"，model 使用 GPU 來訓練（餵進去的 inputs 也需要是 cuda tensor）
 
 
 # 開始測試模型並做預測
@@ -272,39 +269,49 @@ print('\nload model ...')
  
 
 model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
+model_1 = model_1.to(device)
 outputs_1 = testing(batch_size, test_loader, model_1, device)
 
 
 model_2 = torch.load(os.path.join(model_dir, 'ckpt_2.model'))
+model_2 = model_2.to(device)
 outputs_2 = testing(batch_size, test_loader, model_2, device)
 
 
 model_3 = torch.load(os.path.join(model_dir, 'ckpt_3.model'))
+model_3 = model_3.to(device)
 outputs_3 = testing(batch_size, test_loader, model_3, device)
 
 
 model_4 = torch.load(os.path.join(model_dir, 'ckpt_4.model'))
+model_4 = model_4.to(device)
 outputs_4 = testing(batch_size, test_loader, model_4, device)
 
 
 model_5 = torch.load(os.path.join(model_dir, 'ckpt_5.model'))
+model_5 = model_5.to(device)
 outputs_5 = testing(batch_size, test_loader, model_5, device)
 
 
 model_6 = torch.load(os.path.join(model_dir, 'ckpt_6.model'))
+model_6 = model_6.to(device)
 outputs_6 = testing(batch_size, test_loader, model_6, device)
 
 
 model_7 = torch.load(os.path.join(model_dir, 'ckpt_7.model'))
+model_7 = model_7.to(device)
 outputs_7 = testing(batch_size, test_loader, model_7, device)
 
 model_8 = torch.load(os.path.join(model_dir, 'ckpt_8.model'))
+model_8 = model_8.to(device)
 outputs_8 = testing(batch_size, test_loader, model_8, device)
 
 model_9 = torch.load(os.path.join(model_dir, 'ckpt_9.model'))
+model_9 = model_9.to(device)
 outputs_9 = testing(batch_size, test_loader, model_9, device)
 
 model_10 = torch.load(os.path.join(model_dir, 'ckpt_10.model'))
+model_10 = model_10.to(device)
 outputs_10 = testing(batch_size, test_loader, model_10, device)
 
 final = list()

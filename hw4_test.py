@@ -267,6 +267,8 @@ test_loader = torch.utils.data.DataLoader(dataset = test_dataset,
                                             num_workers = 8)
 print('\nload model ...')
 
+torch.device("cuda" if torch.cuda.is_available() else "cpu")
+inputs.to(device) 
 
 model_1 = torch.load(os.path.join(model_dir, 'ckpt_1.model'))
 outputs_1 = testing(batch_size, test_loader, model_1, device)

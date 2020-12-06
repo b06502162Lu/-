@@ -361,7 +361,7 @@ model = LSTM_Net(embedding, embedding_dim=400, hidden_dim=5, num_layers=1, dropo
 model = model.to(device) # device為 "cuda"，model 使用 GPU 來訓練（餵進去的 inputs 也需要是 cuda tensor）
 
 # 把 data 分為 training data 跟 validation data（將一部份 training data 拿去當作 validation data）
-X_train, X_val, y_train, y_val = train_x[:130000], train_x[130000:], y[:130000], y[130000:]
+X_train, X_val, y_train, y_val = train_x[:100000], train_x[100000:], y[:100000], y[100000:]
 print(X_train[:10])
 print(y_train[:10])
 #input('stop')
